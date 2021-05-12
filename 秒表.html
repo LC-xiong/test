@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            width: 120px;
+            height: 200px;
+            padding: 50px;
+            background-color: orange;
+            border: 1px black solid;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        #box1 span {
+            font-size: 22px;
+        }
+
+        #box1 button {
+            width: 120px;
+            height: 30px;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        #box1 button:nth-of-type(1) {
+            margin-top: 30px;
+            background-color: blue;
+        }
+    </style>
+    <script>
+        /*window.onload=function(){}
+            在这里的代码等加载完以后在执行
+        */
+        function $(id) {
+            return document.getElementById(id);
+        }
+        var i = 0;
+        var k = 0;
+        window.onload = function () {
+            var timer = null;
+            $('start').onclick = function () {
+                k++;
+                if (k == 1)
+                    timer = setInterval(function () {
+                        i++;
+                        $('sec').innerHTML = doublenum(i % 60);
+                        $('min').innerHTML = doublenum(parseInt(i / 60) % 60);
+                        $('hour').innerHTML = doublenum(parseInt(i / 3600));
+                    }, 1000)
+            }
+            $('pause').onclick = function () {
+                clearInterval(timer);
+                k = 0;
+            }
+            $('reset').onclick = function () {
+                clearInterval(timer);
+                i = 0;
+                $('sec').innerHTML = doublenum(i % 60);
+                $('min').innerHTML = doublenum(parseInt(i / 60) % 60);
+                $('hour').innerHTML = doublenum(parseInt(i / 3600));
+                k = 0;
+            }
+        }
+        function doublenum(i) {
+            if (i < 10)
+                return "0" + i;
+            else
+                return i;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box1">
+        <span id='hour'>00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <button id='start'>开始</button>
+        <button id="pause">暂停</button>
+        <button id="reset">复位</button>
+    </div>
+</body>
+
+</html>

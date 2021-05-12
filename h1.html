@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script>
+        var Num = function (arr, n) {
+            var number = 0;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == n) {
+                    number += 1;
+                }
+            }
+            return number;
+        }
+        var numRabbits = function (answers) {
+            var rabbitsNum = 0;
+            var arr=[];
+            for(var i =0;i<answers.length;i++){
+                if(arr.indexOf(answers[i],0) == -1){
+                    arr.push(answers[i]);
+                }
+            }
+            for (var i = 0; i < arr.length; i++) {
+                var num = answers[i] + 1;
+                var ansNum = Num(arr, num);
+                if(num==1){
+                    rabbitsNum += ansNum;
+                }
+                else if (num > 1 && ansNum <= num) {
+                    rabbitsNum += num;
+                }
+                else if (num > 1 && ansNum > num) {
+                    var x = Math.ceil(ansNum / num);
+                    rabbitsNum += x * num;
+                }
+
+            }
+            // for (var i = 0; i < arr.length; i++) {
+            //     rabbitsNum += arr[i];
+            // }
+            return rabbitsNum;
+        }
+        
+    </script>
+
+</body>
+
+</html>
